@@ -161,9 +161,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileToggle = document.getElementById('mobile-menu-toggle');
   const navMenu = document.getElementById('nav-menu');
   
-  // 今回はシングルページ内の遷移なので、メニュー展開用のシンプルなスタイルを追加で処理
   mobileToggle.addEventListener('click', () => {
-    navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+    navMenu.classList.toggle('active');
     // スマホトグル時にヘッダー背景を白く保つ
     header.classList.add('scrolled');
   });
@@ -173,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
   navLinks.forEach(link => {
     link.addEventListener('click', () => {
       if (window.innerWidth <= 768) {
-        navMenu.style.display = 'none';
+        navMenu.classList.remove('active');
       }
     });
   });
