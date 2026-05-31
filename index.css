@@ -1029,34 +1029,58 @@ ul {
   .section-padding {
     padding: 4.5rem 0;
   }
-  .nav-menu {
-    display: none; /* シンプルにするためモバイルメニューはトグルに */
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
+  .nav-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
     left: 0;
-    width: 100%;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(15, 30, 54, 0.4);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 1000;
+  }
+  .nav-overlay.active {
+    display: block;
+  }
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 280px;
+    height: 100vh;
     background-color: var(--bg-white);
-    padding: 1.5rem 0;
-    gap: 1.2rem;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
-    z-index: 999;
+    padding: 6rem 2rem 2rem 2rem;
+    gap: 0.5rem;
+    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.15);
+    z-index: 1001;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    border-top: none;
   }
   .nav-menu.active {
-    display: flex;
+    transform: translateX(0);
   }
   .nav-menu .nav-link {
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     width: 100%;
-    text-align: center;
-    padding: 0.4rem 0;
+    text-align: left;
+    padding: 1rem 0.5rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  .nav-menu .nav-link::after {
+    display: none;
   }
   .nav-cta {
     display: none;
   }
   .mobile-toggle {
     display: block;
+    position: relative;
+    z-index: 1002;
   }
   .strengths-grid, .services-grid {
     grid-template-columns: 1fr;

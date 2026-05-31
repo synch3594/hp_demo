@@ -160,19 +160,30 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================================================
   const mobileToggle = document.getElementById('mobile-menu-toggle');
   const navMenu = document.getElementById('nav-menu');
+  const navOverlay = document.getElementById('nav-overlay');
   
+  const closeMobileMenu = () => {
+    navMenu.classList.remove('active');
+    navOverlay.classList.remove('active');
+  };
+
   mobileToggle.addEventListener('click', () => {
     navMenu.classList.toggle('active');
+    navOverlay.classList.toggle('active');
     // スマホトグル時にヘッダー背景を白く保つ
     header.classList.add('scrolled');
   });
+
+  if (navOverlay) {
+    navOverlay.addEventListener('click', closeMobileMenu);
+  }
 
   // メニュー内のリンクをクリックしたら閉じる
   const navLinks = document.querySelectorAll('.nav-link');
   navLinks.forEach(link => {
     link.addEventListener('click', () => {
       if (window.innerWidth <= 768) {
-        navMenu.classList.remove('active');
+        closeMobileMenu();
       }
     });
   });
